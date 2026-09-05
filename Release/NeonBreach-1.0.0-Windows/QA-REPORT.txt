@@ -1,0 +1,12 @@
+NEON BREACH 1.0.0 交付验收记录
+日期：2026-09-05
+
+[通过] 核心规则测试：115 项
+[通过] Unity 6000.0.62f1 工程导入与脚本编译
+[通过] 场景、Standard Shader、资源引用检查
+[通过] Windows x64 Standalone 构建
+[通过] conda base 启动脚本
+[通过] Windows Player 初始化，无运行时异常日志
+[通过] 左 Alt 键盘瞄准、Bloom、特效对象池、战斗反馈、设置保存
+
+建议首次试玩确认：部署第一波，验证左 Alt、R、Esc，并在另一台 Windows x64 机器复制整个发布目录测试。

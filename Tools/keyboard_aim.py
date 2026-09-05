@@ -1,0 +1,15 @@
+from pathlib import Path
+root=Path(r'D:\github\NeonBreach\Assets\NeonBreach\Scripts')
+for rel in ['Gameplay/PlayerMotor.cs','Gameplay/RifleController.cs','Presentation/ArenaHud.cs']:
+ p=root/rel; s=p.read_text(encoding='utf-8-sig')
+ s=s.replace('Input.GetMouseButton(1)', 'PlayerMotor.IsAiming')
+ p.write_text(s,encoding='utf-8')
+p=root/'Gameplay/PlayerMotor.cs'; s=p.read_text(encoding='utf-8-sig')
+s=s.replace('public const int PlayerLayer = 8;', 'public const int PlayerLayer = 8;\n        public static bool IsAiming => Input.GetKey(KeyCode.LeftAlt);')
+p.write_text(s,encoding='utf-8')
+p=Path(r'D:\github\NeonBreach\README.md'); s=p.read_text(encoding='utf-8-sig')
+s=s.replace('| 鼠标右键（按住） | 瞄准、缩小散布 |','| 左 Alt（按住） | 瞄准、缩小散布 |')
+p.write_text(s,encoding='utf-8')
+p=Path(r'D:\github\NeonBreach\Assets\NeonBreach\Scripts\Presentation\ArenaHud.cs'); s=p.read_text(encoding='utf-8-sig')
+s=s.replace('RMB  AIM      R  RELOAD', 'ALT  AIM      R  RELOAD')
+p.write_text(s,encoding='utf-8')

@@ -1,0 +1,12 @@
+from pathlib import Path
+p=Path(r'D:\github\NeonBreach\README.md')
+s=p.read_text(encoding='utf-8-sig')
+s=s.replace('> **当前交付状态**：工程、场景入口、完整玩法源码和辅助脚本已生成。当前机器未检测到 Unity Editor，因此没有生成 Windows 可执行文件，也没有完成 Unity API 编译、画面、音频和实机试玩验证。已通过的本机检查范围见 `TESTING.md`，不要把源码检查等同于完整游戏验收。','> **当前交付状态（2026-09-05）**：Unity 6.0.62f1 已安装，工程已完成真实导入、脚本编译、场景/着色器验证，并成功生成 Windows x64 构建。当前版本增加了战斗特效对象池、射击 Bloom、击杀提示、受击方向提示、命中率统计，以及 FOV/灵敏度/静音设置保存。')
+s=s.replace('安装 Editor 后，也可以直接双击', '已经生成 Windows 版本，可直接双击 `D:\\github\\NeonBreach\\Play-Game.cmd`，它会使用 conda base 环境启动游戏。\n\n安装 Editor 后，也可以直接双击')
+p.write_text(s,encoding='utf-8')
+p=Path(r'D:\github\NeonBreach\TESTING.md')
+s=p.read_text(encoding='utf-8-sig')
+s=s.replace('Unity-dependent API compilation, visual QA, input/audio, and player builds still require Unity Editor.','Unity-dependent checks were subsequently completed with Unity 6000.0.62f1: API compilation, project validation, and Windows x64 player build passed. Visual QA and full five-wave balance testing remain manual checks.')
+s=s.replace('当前机器常见路径和 Unity Hub 记录中未找到 Editor，也没有可用的 Unity 引用程序集：','以下项目仍建议人工试玩确认：')
+s=s.replace('- Unity 依赖脚本的完整 API/类型编译与工程导入。\n- Editor Play Mode、碰撞与输入验证。\n- 实际渲染截图、UI 排版与声音试听。\n- 五波流程的端到端游玩、难度平衡和性能实测。\n- Windows 独立构建与构建后试玩。','- Editor Play Mode、碰撞与输入验证。\n- 实际渲染截图、UI 排版与声音试听。\n- 五波流程的端到端游玩、难度平衡和性能实测。\n\n已完成：Unity API/类型编译、Unity 工程导入、项目验证、Windows 独立构建。')
+p.write_text(s,encoding='utf-8')
