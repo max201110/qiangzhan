@@ -1,0 +1,9 @@
+{
+  "name": "NeonArena.Editor",
+  "references": [
+    "NeonArena.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

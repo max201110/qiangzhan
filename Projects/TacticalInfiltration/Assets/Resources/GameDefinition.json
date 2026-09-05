@@ -1,0 +1,32 @@
+{
+  "id": "TacticalInfiltration",
+  "title": "Tactical Infiltration",
+  "subtitle": "SILENT OPERATIONS / PATROL & INTELLIGENCE",
+  "mode": 2,
+  "missions": [
+    {
+      "name": "Ghost Signal",
+      "brief": "Download intelligence from three terminals. Avoid patrol cones and extract north. Shooting and sprinting reveal your position.",
+      "seed": 771,
+      "waves": 0,
+      "enemies": 6,
+      "timeLimit": 600
+    },
+    {
+      "name": "Black Site",
+      "brief": "Eight patrol guards control the checkpoint district. Use distractions and rear takedowns to open a safe route.",
+      "seed": 882,
+      "waves": 0,
+      "enemies": 8,
+      "timeLimit": 540
+    },
+    {
+      "name": "Silent Exit",
+      "brief": "Ten guards patrol the final compound. Recover all data before the six-minute deadline and escape.",
+      "seed": 993,
+      "waves": 0,
+      "enemies": 10,
+      "timeLimit": 360
+    }
+  ]
+}

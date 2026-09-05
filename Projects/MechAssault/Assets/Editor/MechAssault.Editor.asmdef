@@ -1,0 +1,9 @@
+{
+  "name": "MechAssault.Editor",
+  "references": [
+    "MechAssault.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

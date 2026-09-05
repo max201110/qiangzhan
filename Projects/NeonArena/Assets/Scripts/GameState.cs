@@ -1,2 +1,0 @@
-using UnityEngine; using System;
-public class GameState : MonoBehaviour { public static GameState I; public int wave=1, score; public event Action<int> WaveChanged; void Awake(){I=this??new GameObject("GameState").AddComponent<GameState>(); if(I!=this)Destroy(gameObject); DontDestroyOnLoad(gameObject);} public void AdvanceWave(){wave++; WaveChanged?.Invoke(wave);} public void AddScore(int value){score+=Mathf.Max(0,value);} }

@@ -1,0 +1,32 @@
+{
+  "id": "MechAssault",
+  "title": "Mech Assault",
+  "subtitle": "ARMORED WARFARE / HEAT & TARGET CONTROL",
+  "mode": 1,
+  "missions": [
+    {
+      "name": "Relay Breaker",
+      "brief": "Destroy three enemy relay towers and survive two assault waves. The last wave deploys a Warden siege unit.",
+      "seed": 441,
+      "waves": 2,
+      "enemies": 4,
+      "timeLimit": 0
+    },
+    {
+      "name": "Iron Corridor",
+      "brief": "The district is barricaded. Break the relay network, manage core heat and destroy the siege unit.",
+      "seed": 552,
+      "waves": 3,
+      "enemies": 5,
+      "timeLimit": 0
+    },
+    {
+      "name": "Warden Protocol",
+      "brief": "Cripple the final network. Four waves and a hardened Warden stand between your mech and extraction.",
+      "seed": 663,
+      "waves": 4,
+      "enemies": 6,
+      "timeLimit": 0
+    }
+  ]
+}

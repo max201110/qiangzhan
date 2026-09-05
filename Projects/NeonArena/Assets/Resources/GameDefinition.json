@@ -1,0 +1,32 @@
+{
+  "id": "NeonArena",
+  "title": "Neon Arena",
+  "subtitle": "REACTOR DEFENSE / THIRD-PERSON SURVIVAL",
+  "mode": 0,
+  "missions": [
+    {
+      "name": "First Contact",
+      "brief": "Hold the industrial district against three assault waves. Keep the reactor alive, then evacuate north.",
+      "seed": 171,
+      "waves": 3,
+      "enemies": 4,
+      "timeLimit": 0
+    },
+    {
+      "name": "Lockdown",
+      "brief": "Checkpoint gates redirect the enemy assault. Four waves threaten the reactor. Buy upgrades before deployment.",
+      "seed": 281,
+      "waves": 4,
+      "enemies": 5,
+      "timeLimit": 0
+    },
+    {
+      "name": "Last Light",
+      "brief": "The final defense. Five waves, heavier fire and new blast walls. Protect the reactor and bring your pilot home.",
+      "seed": 391,
+      "waves": 5,
+      "enemies": 6,
+      "timeLimit": 0
+    }
+  ]
+}

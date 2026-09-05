@@ -1,0 +1,9 @@
+{
+  "name": "TacticalInfiltration.Editor",
+  "references": [
+    "TacticalInfiltration.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

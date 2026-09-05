@@ -1,2 +1,0 @@
-using UnityEngine;
-public class StealthGuard : MonoBehaviour { public Transform[] patrolPoints; public float viewDistance=18,suspicion; int patrolIndex; void Update(){if(patrolPoints!=null&&patrolPoints.Length>0){var t=patrolPoints[patrolIndex%patrolPoints.Length];transform.position=Vector3.MoveTowards(transform.position,t.position,Time.deltaTime*2.2f);if(Vector3.Distance(transform.position,t.position)<.4f)patrolIndex++;}suspicion=Mathf.Max(0,suspicion-Time.deltaTime*4);}}
