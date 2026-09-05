@@ -16,6 +16,8 @@ namespace Frontier {
         void Bar(float x,float y,float w,float val,Color color){Rect(x,y,w,7,new Color(.18f,.23f,.3f));Rect(x,y,w*Mathf.Clamp01(val),7,color);}
         void OnGUI(){
             if(!Session||!Session.Player)return;if(!initialized)Init();
+            // Keep the presentation readable at ultrawide and laptop aspect ratios.
+            GUI.skin.window.padding=new RectOffset(18,18,18,18);
             var matrix=GUI.matrix;float scale=Mathf.Min(UnityEngine.Screen.width/1600f,UnityEngine.Screen.height/900f);
             GUI.matrix=Matrix4x4.TRS(new Vector3((UnityEngine.Screen.width-1600*scale)/2,(UnityEngine.Screen.height-900*scale)/2,0),Quaternion.identity,Vector3.one*scale);
             if(Session.State==Screen.Playing)Playing();else Menu();
@@ -25,14 +27,17 @@ namespace Frontier {
         void Playing(){
             var p=Session.Player;var accent=Session.World.Accent;
             Rect(28,25,440,102,panel);Rect(28,25,4,102,accent);
+            Rect(48,113,420,2,new Color(accent.r,accent.g,accent.b,.38f));
+            Text(48,117,420,18,Session.Mode==Mode.Arena?"DEFENSE NETWORK // LIVE":Session.Mode==Mode.Mech?"MECHANIZED COMMAND // ONLINE":"COVERT OPERATIONS // LOW SIGNATURE",small);
             Text(48,39,405,25,Session.Def.title.ToUpper(),heading);Text(48,76,400,30,$"SECTOR {Session.MissionIndex+1:00}  /  {Session.Mission.name}",small);
-            Rect(580,25,460,91,panel);
+            Rect(580,25,460,91,panel);Rect(580,25,4,91,accent);
+            Rect(600,112,420,2,new Color(accent.r,accent.g,accent.b,.38f));
             string objective=Session.ReadyToExtract?"EXTRACT AT THE NORTH PAD":Session.Mode==Mode.Arena?$"WAVE {Session.Wave} / {Session.Mission.waves}  •  {Session.Enemies.Count} HOSTILES":Session.Mode==Mode.Mech?$"RELAYS {Session.Collected}/3  •  WAVE {Session.Wave}/{Session.Mission.waves}":$"INTELLIGENCE {Session.Collected} / 3";
             Text(600,42,420,30,objective);Text(600,78,420,25,$"MISSION TIME  {Session.Elapsed:0}s    /    SCORE {Session.Score:00000}",small);
             MiniMap();
             Rect(28,730,345,136,panel);Text(48,748,290,26,$"ARMOR  {p.Health:0} / {p.MaxHealth:0}");Bar(48,782,300,p.Health/p.MaxHealth,p.HitUntil>Time.time?Color.red:accent);
             Text(48,803,300,23,Session.Mode==Mode.Mech?"THRUSTER / ORDNANCE ENERGY":"STAMINA / GADGET ENERGY",small);Bar(48,835,300,p.Energy/100,new Color(.85f,.65f,.25f));
-            Rect(1230,730,342,136,panel);
+            Rect(1230,730,342,136,panel);Rect(1230,730,4,136,accent);
             string weapon=Session.Mode==Mode.Mech?(p.Weapon==0?"PULSE CANNON":"SIEGE ROCKETS"):Session.Mode==Mode.Stealth?"SUPPRESSED PISTOL":p.Weapon==0?"ASSAULT RIFLE":"BREACH SHOTGUN";
             Text(1250,747,310,30,weapon,heading);
             if(Session.Mode==Mode.Mech){Text(1250,784,280,30,p.Heat.Locked?"OVERHEATED / COOLING":$"CORE HEAT  {p.Heat.Value:0}%");Bar(1250,833,292,p.Heat.Value/100,p.Heat.Locked?Color.red:accent);}
@@ -40,6 +45,8 @@ namespace Frontier {
             if(Session.Mode==Mode.Arena){Rect(28,143,345,60,panel);Text(45,151,310,25,$"REACTOR INTEGRITY  {Session.Reactor:0}%",small);Bar(45,185,310,Session.Reactor/100,accent);}
             if(Session.Mode==Mode.Stealth){Rect(28,143,345,60,panel);Text(45,151,310,25,$"ALARM LEVEL  {Session.Alarm:0}%",small);Bar(45,185,310,Session.Alarm/100,new Color(1,.45f,.2f));}
             Text(500,852,625,25,$"Q  {(p.AbilityLeft>0?p.AbilityLeft.ToString("0.0")+"s":"READY")}     G  GADGET     ALT  AIM     ESC  MENU",small);
+            Rect(500,812,625,31,new Color(.03f,.06f,.09f,.86f));
+            Text(520,820,585,20,Session.Mode==Mode.Arena?"REACTOR STATUS     HOLD THE LINE     NORTH EXTRACTION":Session.Mode==Mode.Mech?"CORE STATUS       MANAGE HEAT       RELAY NETWORK":"SIGNATURE STATUS   AVOID THE CONES   NORTH EXTRACTION",small);
             if(!string.IsNullOrEmpty(Session.Prompt)){Rect(545,664,510,50,panel);Text(567,678,470,30,Session.Prompt,heading);}
             float gap=p.Aiming?5:11;
             Rect(800-gap-9,449,9,2,Color.white);Rect(800+gap,449,9,2,Color.white);Rect(799,450-gap-9,2,9,Color.white);Rect(799,450+gap,2,9,Color.white);
@@ -67,8 +74,14 @@ namespace Frontier {
             Rect(0,0,1600,900,new Color(.01f,.025f,.05f,.78f));Rect(60,60,1480,780,panel);Rect(60,60,6,780,Session.World.Accent);
             Text(100,85,900,80,Session.Def.title.ToUpper(),title);Text(104,162,900,40,Session.Def.subtitle,small);
             Text(104,216,810,60,Session.State==Screen.Title?"CAMPAIGN OPERATIONS":Session.State==Screen.Paused?"TACTICAL PAUSE":Session.State==Screen.Defeat?"MISSION FAILED":Session.State==Screen.Complete?"CAMPAIGN COMPLETE":"MISSION DEBRIEF",heading);
+            Rect(104,350,790,2,new Color(Session.World.Accent.r,Session.World.Accent.g,Session.World.Accent.b,.55f));
             Text(104,276,780,95,Session.State==Screen.Title?Session.Def.missions[Session.Save.mission].brief:Session.State==Screen.Paused?Session.Mission.brief:Session.Debrief);
             if(Session.State==Screen.Title){
+                // Mission cards make the campaign state visible before deployment.
+                for(int i=0;i<Session.Def.missions.Length;i++){
+                    float cx=980+i*165; bool unlocked=i<=Session.Save.mission; Rect(cx,372,145,94,unlocked?new Color(.08f,.15f,.19f,.95f):new Color(.06f,.08f,.1f,.95f));
+                    Rect(cx,372,3,94,unlocked?Session.World.Accent:new Color(.22f,.25f,.28f)); Text(cx+13,383,120,20,$"CHAPTER {i+1:00}",small); Text(cx+13,411,120,25,unlocked?Session.Def.missions[i].name:"LOCKED",body); Text(cx+13,443,120,18,unlocked?"READY":"CLEAR PREVIOUS",small);
+                }
                 if(Button(104,389,330,Session.Save.completed?"REPLAY FINAL MISSION":"CONTINUE CAMPAIGN"))Session.StartCampaign(false);
                 if(Button(104,453,330,confirmNew?"CONFIRM NEW CAMPAIGN":"NEW CAMPAIGN")){if(confirmNew){confirmNew=false;Session.StartCampaign(true);}else confirmNew=true;}
                 Text(104,523,340,25,"DIFFICULTY",small);Session.Difficulty=GUI.SelectionGrid(new Rect(104,555,580,45),Session.Difficulty,new[]{"TRAINING","STANDARD","VETERAN"},3,button);
@@ -87,6 +100,7 @@ namespace Frontier {
                 if(Session.State==Screen.Debrief){if(Button(104,680,330,"DEPLOY NEXT MISSION"))Session.Continue();}else if(Button(104,680,330,"RETURN TO TITLE"))Session.Title();
             }
             Rect(929,217,1,560,new Color(.2f,.28f,.34f));Text(980,217,510,40,"FIELD MANUAL",heading);
+            Rect(980,262,480,2,new Color(Session.World.Accent.r,Session.World.Accent.g,Session.World.Accent.b,.55f));
             Text(980,277,495,410,"WASD  /  Move\nMouse or arrow keys  /  Camera\nLeft ALT  /  Aim down sights\nLeft mouse  /  Fire\nR  /  Reload     1, 2  /  Weapon\nSHIFT  /  Sprint     SPACE  /  Jump\nC  /  Crouch     E  /  Interact\nQ  /  Class ability     G  /  Gadget\nTAB  /  Mech target lock\nF  /  Stealth rear takedown\nESC  /  Pause and settings");
             Text(980,670,490,100,Session.Mode==Mode.Arena?"Protect the reactor through all waves. Reach the north extraction pad to finish. Q heals; G launches a grenade.":Session.Mode==Mode.Mech?"Destroy all three relays and every wave. Q dashes; TAB locks targets. Overheat blocks fire until cooled to 35%.":"Hold E to download three terminals. Crouch and use cover. Q cloaks for 3s; G distracts guards. Extract at the north pad.",small);
             Text(104,807,1200,23,"LOCAL SINGLE-PLAYER CAMPAIGN   /   3 MISSIONS   /   CHECKPOINT SAVE AT MISSION COMPLETION",small);
