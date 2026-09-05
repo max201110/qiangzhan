@@ -20,6 +20,9 @@ jobs:
           test -d Projects/NeonArena
           test -d Projects/MechAssault
           test -d Projects/TacticalInfiltration
+          test -f Projects/NeonArena/README.md
+          test -f Projects/MechAssault/README.md
+          test -f Projects/TacticalInfiltration/README.md
           test -d Projects/_Framework
           test -f Projects/Tools/sync_projects.py
       - name: Check C# sources
@@ -39,3 +42,4 @@ jobs:
           test -f Projects/NeonArena/Build.cmd
           test -f Projects/MechAssault/Build.cmd
           test -f Projects/TacticalInfiltration/Build.cmd
+

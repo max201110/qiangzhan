@@ -1,7 +1,32 @@
-# Tactical Infiltration
-Unity 6 3D stealth and tactical AI starter project.
+# TacticalInfiltration / 战术潜入
 
-Features: patrol routes, suspicion meter, line-of-sight extension point, alarm state foundation.
+第三人称战术潜入项目，基于 Unity 6 `6000.0.62f1`。玩家需要在不触发全面警报的情况下下载数据、避开巡逻并完成撤离。
 
-## Production expansion
-This project now includes modular gameplay systems for health, weapons, AI, objectives, projectiles, heat, target locking, pickups, and wave/misson orchestration. The scripts are intentionally decoupled so teams can add UI, animation, networking, and content without rewriting the core.
+## 玩法亮点
+
+- 巡逻、视线检测、怀疑值与分级警报；
+- 掩体遮挡、噪音诱饵、隐身能力与背后处决；
+- 数据终端下载、时间限制、撤离点与任务链；
+- 警报后动态增援与搜索行为；
+- 三章潜入战役、升级、存档和失败重试；
+- 多路线工业地图、门禁区域、掩体和任务小地图。
+
+## 操作
+
+| 按键 | 功能 |
+|---|---|
+| W/A/S/D | 移动 |
+| 鼠标 | 转动视角 |
+| 左 Ctrl | 蹲伏 / 降低噪音 |
+| 左 Shift | 快速移动 |
+| E | 交互 / 下载终端 |
+| Q | 投掷噪音诱饵 |
+| F | 隐身能力 |
+| V | 背后处决 |
+| Esc | 暂停 |
+
+## 启动与验证
+
+双击 `Play.cmd` 运行 Windows 版本；`Open.cmd` 打开 Unity 编辑器；`Build.cmd` 生成构建；`Validate.cmd` 执行验证。
+
+推荐 Unity 版本：`6000.0.62f1`。首次进入任务后，优先观察敌人视锥和怀疑值，再规划路线；警报状态会改变增援和巡逻行为。

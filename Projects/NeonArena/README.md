@@ -1,7 +1,31 @@
-# Neon Arena
-Unity 6 3D third-person survival shooter starter project.
+# NeonArena / 霓虹竞技场
 
-Features: wave spawning, cover layout, follow-camera target, modular weapon/pickup foundation.
+第三人称生存射击项目，基于 Unity 6 `6000.0.62f1`。玩家需要在工业竞技场中守住 Reactor，完成三章战役与逐波增援。
 
-## Production expansion
-This project now includes modular gameplay systems for health, weapons, AI, objectives, projectiles, heat, target locking, pickups, and wave/misson orchestration. The scripts are intentionally decoupled so teams can add UI, animation, networking, and content without rewriting the core.
+## 玩法亮点
+
+- 第三人称移动、冲刺、跳跃和键盘瞄准辅助；
+- Sentry、Bulwark 等敌人，支持 A* 寻路、视线判断、侧翼与距离控制；
+- Reactor 守点、波次增援、补给箱和章节推进；
+- 多武器、换弹、命中反馈、爆炸和敌人血条；
+- 升级商店、JSON 存档、损坏存档恢复；
+- 工业程序化地图、掩体、小地图、暂停和结算界面。
+
+## 操作
+
+| 按键 | 功能 |
+|---|---|
+| W/A/S/D | 移动 |
+| 鼠标 | 转动视角 |
+| 左键 | 射击 |
+| 右键 / 左 Alt | 瞄准 |
+| R | 换弹 |
+| Shift | 冲刺 |
+| Space | 跳跃 |
+| Esc | 暂停 |
+
+## 启动与验证
+
+双击 `Play.cmd` 运行已构建版本；使用 Unity 打开本目录后，双击 `Open.cmd` 可打开编辑器。构建使用 `Build.cmd`，源码检查使用 `Validate.cmd`。
+
+推荐 Unity 版本：`6000.0.62f1`。首次导入会在运行时生成地图和战斗对象。

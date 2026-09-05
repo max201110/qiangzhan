@@ -1,7 +1,31 @@
-# Mech Assault
-Unity 6 3D mech combat starter project.
+# MechAssault / 机甲突击
 
-Features: remote cannon, armor/heat model, target-lock foundation, modular controller.
+远程机甲战斗项目，基于 Unity 6 `6000.0.62f1`。玩家驾驶重型机甲，在三章工业战区中摧毁中继塔并击败 Warden Boss。
 
-## Production expansion
-This project now includes modular gameplay systems for health, weapons, AI, objectives, projectiles, heat, target locking, pickups, and wave/misson orchestration. The scripts are intentionally decoupled so teams can add UI, animation, networking, and content without rewriting the core.
+## 玩法亮点
+
+- 机甲装甲值、受击反馈和远程炮弹；
+- 武器热量、过热锁枪与主动冷却；
+- 目标锁定、范围爆炸和炮弹落点反馈；
+- 轻型敌人与 Warden 重型 Boss 的分层战斗；
+- 中继塔摧毁目标、章节任务、升级与 JSON 存档；
+- 多层工业地图、掩体、桥梁、灯光和战斗 HUD。
+
+## 操作
+
+| 按键 | 功能 |
+|---|---|
+| W/A/S/D | 机甲移动 |
+| 鼠标 | 转动视角 |
+| 左键 | 远程炮击 |
+| 右键 / 左 Alt | 锁定目标 / 精确瞄准 |
+| Q/E | 左右侧移 |
+| F | 冷却散热 |
+| R | 切换武器 |
+| Esc | 暂停 |
+
+## 启动与验证
+
+双击 `Play.cmd` 运行 Windows 版本；`Open.cmd` 打开 Unity 编辑器；`Build.cmd` 生成构建；`Validate.cmd` 执行源码、场景和规则检查。
+
+推荐 Unity 版本：`6000.0.62f1`。项目不依赖 Asset Store 内容，地图与战斗对象由框架运行时创建。
