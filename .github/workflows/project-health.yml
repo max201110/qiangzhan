@@ -1,0 +1,41 @@
+name: Project Health
+
+on:
+  push:
+    branches: [ main, "*-2026-09-05" ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  source-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check repository structure
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f TESTING.md
+          test -d Projects/NeonArena
+          test -d Projects/MechAssault
+          test -d Projects/TacticalInfiltration
+          test -d Projects/_Framework
+          test -f Projects/Tools/sync_projects.py
+      - name: Check C# sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          count=$(find Assets Projects -name '*.cs' -type f | wc -l)
+          test "$count" -gt 20
+          if grep -RIn --include='*.cs' -E '<<<<<<<|=======|>>>>>>>' Assets Projects; then exit 1; fi
+      - name: Check delivery scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f Build-Windows.cmd
+          test -f Open-Game.cmd
+          test -f Play-Game.cmd
+          test -f Projects/NeonArena/Build.cmd
+          test -f Projects/MechAssault/Build.cmd
+          test -f Projects/TacticalInfiltration/Build.cmd

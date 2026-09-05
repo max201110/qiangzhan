@@ -1,0 +1,15 @@
+name: Feature request
+about: 提议新的玩法、AI 或地图功能
+labels: enhancement
+body:
+  - type: input
+    id: project
+    attributes:
+      label: 目标项目
+  - type: textarea
+    id: idea
+    attributes:
+      label: 功能描述
+      description: 请说明玩家体验、输入方式和验收标准
+    validations:
+      required: true
